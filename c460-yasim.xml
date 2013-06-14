@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 
 <!-- Caudron C 460 - 2011 BARANGER Emmanuel
            updated - 2011 Philippe BROCORENS
@@ -61,7 +61,7 @@
          taper="0.43"
          sweep="2"> 
          <stall aoa="18" width="1" peak="1.5"/>
-         <flap0 start="0.15" end="0.85" lift="1.5" drag="1.3"/>
+         <flap0 start="0.15" end="0.85" lift="1.45" drag="1.3"/>
 
          <control-input axis="/controls/flight/elevator" control="FLAP0"/>
          <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>

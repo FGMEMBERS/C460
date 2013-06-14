@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 
 <PropertyList>
 
@@ -48,6 +48,34 @@
       <x-m>  0.081 </x-m>
       <y-m> -0.150 </y-m>
       <z-m> -0.035 </z-m>
+    </offsets>
+  </model>
+
+  <!-- SWITCH -->
+  <model> 
+    <path>Aircraft/C460/Models/Interior/Panel/Instruments/Switch/batt-lights.xml</path>
+    <offsets>
+      <x-m>  0.07848 </x-m>
+      <y-m> -0.09700 </y-m>
+      <z-m> -0.06100 </z-m>
+    </offsets>
+  </model>
+
+  <model> 
+    <path>Aircraft/C460/Models/Interior/Panel/Instruments/Switch/nav-lights.xml</path>
+    <offsets>
+      <x-m>  0.07848 </x-m>
+      <y-m> -0.06300 </y-m>
+      <z-m> -0.06100 </z-m>
+    </offsets>
+  </model>
+
+  <model> 
+    <path>Aircraft/C460/Models/Interior/Panel/Instruments/Switch/instr-lights.xml</path>
+    <offsets>
+      <x-m>  0.07848 </x-m>
+      <y-m> -0.02900 </y-m>
+      <z-m> -0.06100 </z-m>
     </offsets>
   </model>
 

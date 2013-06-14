@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 
 <PropertyList>
 
@@ -31,6 +31,15 @@
     <object-name>intvitres</object-name>
   </animation>
 
+  <!-- working for Rembrandt -->
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <condition>
+      <property>sim/rendering/rembrandt/enabled</property>
+    </condition>
+    <object-name>intvitres</object-name>
+  </effect>
+
   <!-- Pilote -->
   <model>
     <path>Aircraft/C460/Models/Pilot/pilot.xml</path>
@@ -59,15 +68,43 @@
   </animation>
 
   <animation>
+    <type>pick</type>
+    <object-name>IntPorteGauche</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>doors.passenger.toggle();</script>
+      </binding>
+    </action>
+  </animation>
+  
+  <animation>
     <name>IntPorteDroite</name>
     <object-name>intporteD</object-name>
     <object-name>inttourporteD</object-name>
   </animation>
 
   <animation>
+    <type>pick</type>
+    <object-name>IntPorteDroite</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>doors.passenger.toggle();</script>
+      </binding>
+    </action>
+  </animation>
+  
+  <animation>
     <type>rotate</type>
     <object-name>IntPorteGauche</object-name>
-    <property>instrumentation/doors/passenger/position-norm</property>
+    <property>sim/model/door-positions/passenger/position-norm</property>
     <factor> 165 </factor>
     <axis>
       <x1-m>  0.153 </x1-m>
@@ -82,7 +119,7 @@
   <animation>
     <type>rotate</type>
     <object-name>IntPorteDroite</object-name>
-    <property>instrumentation/doors/passenger/position-norm</property>
+    <property>sim/model/door-positions/passenger/position-norm</property>
     <factor> -165 </factor>
     <axis>
       <x1-m> 0.153 </x1-m>
@@ -102,10 +139,24 @@
     <object-name>intvitres</object-name>
   </animation>
 
+    <animation>
+    <type>pick</type>
+    <object-name>IntLaCanope</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>doors.crew.toggle();</script>
+      </binding>
+    </action>
+  </animation>
+
   <animation>
     <type>translate</type>
     <object-name>IntLaCanope</object-name>
-    <property>instrumentation/doors/crew/position-norm</property>
+    <property>sim/model/door-positions/crew/position-norm</property>
     <factor> -0.61 </factor>
     <axis>
       <x> 1 </x>
@@ -117,7 +168,7 @@
   <animation>
     <type>translate</type>
     <object-name>IntLaCanope</object-name>
-    <property>instrumentation/doors/crew/position-norm</property>
+    <property>sim/model/door-positions/crew/position-norm</property>
     <factor> 0.04 </factor>
     <axis>
       <x> 0 </x>
@@ -127,4 +178,3 @@
   </animation>
 
 </PropertyList>
-

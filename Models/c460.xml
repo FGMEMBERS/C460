@@ -105,35 +105,16 @@
     <property-base>sim/model/livery</property-base>
     <texture-prop>texture</texture-prop>
     <texture>texture.png</texture>
-<!--
-    <diffuse>
-      <red-prop>diffuse/red</red-prop>
-      <green-prop>diffuse/green</green-prop>
-      <blue-prop>diffuse/blue</blue-prop>
-    </diffuse>
-
-    <ambient>
-      <red-prop>ambient/red</red-prop>
-      <green-prop>ambient/green</green-prop>
-      <blue-prop>ambient/blue</blue-prop>
-    </ambient>
--->
     <specular>
       <red-prop>specular/red</red-prop>
       <green-prop>specular/green</green-prop>
       <blue-prop>specular/blue</blue-prop>
     </specular>
-
     <emission>
       <red-prop>emission/red</red-prop>
       <green-prop>emission/green</green-prop>
       <blue-prop>emission/blue</blue-prop>
     </emission>
-<!--
-    <shininess>
-      <shininess-prop>shininess</shininess-prop>
-    </shininess>
--->
   </animation>
 
   <animation>
@@ -150,6 +131,17 @@
     <object-name>propblur</object-name>
   </animation>
 
+  <!-- working for Rembrandt -->
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <condition>
+      <property>sim/rendering/rembrandt/enabled</property>
+    </condition>
+    <object-name>vitres</object-name>
+    <object-name>propdisc</object-name>
+    <object-name>propblur</object-name>
+  </effect>
+
   <!-- Une ombre pour OSG -->
   <model>
     <path>Aircraft/C460/Models/shadow.xml</path>
@@ -162,7 +154,100 @@
 
   <!-- Interieur -->
   <model>
+    <name>Interieur</name>
     <path>Aircraft/C460/Models/Interior/interior.xml</path>
+  </model>
+
+  <!-- For Rembrandt -->
+  <animation>
+    <type>noshadow</type>
+    <object-name>Interieur</object-name>
+  </animation>
+
+  <!-- Cranking -->
+  <model>
+    <path>Aircraft/C460/Models/Effects/cranking/cranking.xml</path>
+    <offsets>
+      <x-m> -2.880 </x-m>
+      <y-m>  0.187 </y-m>
+      <z-m> -0.515 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/Effects/cranking/cranking.xml</path>
+    <offsets>
+      <x-m> -2.710 </x-m>
+      <y-m>  0.195 </y-m>
+      <z-m> -0.531 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/Effects/cranking/cranking.xml</path>
+    <offsets>
+      <x-m> -2.543 </x-m>
+      <y-m>  0.202 </y-m>
+      <z-m> -0.551 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/Effects/cranking/cranking.xml</path>
+    <offsets>
+      <x-m> -2.372 </x-m>
+      <y-m>  0.203 </y-m>
+      <z-m> -0.571 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/Effects/cranking/cranking.xml</path>
+    <offsets>
+      <x-m> -2.195 </x-m>
+      <y-m>  0.207 </y-m>
+      <z-m> -0.582 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/Effects/cranking/cranking.xml</path>
+    <offsets>
+      <x-m> -2.032 </x-m>
+      <y-m>  0.205 </y-m>
+      <z-m> -0.591 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Effets sur le sol -->
+  <!-- Roue gauche -->
+  <model>
+    <path>Aircraft/C460/Models/Effects/ground/ground0.xml</path>
+    <offsets>
+      <x-m> -1.496 </x-m>
+      <y-m> -0.956 </y-m>
+      <z-m> -1.178 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Roue droite -->
+  <model>
+    <path>Aircraft/C460/Models/Effects/ground/ground1.xml</path>
+    <offsets>
+      <x-m> -1.496 </x-m>
+      <y-m>  0.956 </y-m>
+      <z-m> -1.178 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Patte de queue -->
+  <model>
+    <path>Aircraft/C460/Models/Effects/ground/ground2.xml</path>   
+    <offsets>
+      <x-m>  3.023 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -0.344 </z-m>
+    </offsets>
   </model>
 
   <!-- L''hélice --> 
@@ -217,6 +302,12 @@
   <animation>
     <type>spin</type>
     <object-name>HeliceComplete</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value> 5 </value>
+      </greater-than>
+    </condition>
     <property>/engines/engine[0]/rpm</property>
     <factor> 1 </factor>
     <center>
@@ -737,9 +828,23 @@
 
   <!-- Les portes -->
   <animation>
+    <type>pick</type>
+    <object-name>porteG</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>doors.passenger.toggle();</script>
+      </binding>
+    </action>
+  </animation>
+  
+  <animation>
     <type>rotate</type>
     <object-name>porteG</object-name>
-    <property>instrumentation/doors/passenger/position-norm</property>
+    <property>sim/model/door-positions/passenger/position-norm</property>
     <factor> 165 </factor>
     <axis>
       <x1-m>  0.153 </x1-m>
@@ -752,9 +857,23 @@
   </animation>
 
   <animation>
+    <type>pick</type>
+    <object-name>porteD</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>doors.passenger.toggle();</script>
+      </binding>
+    </action>
+  </animation>
+  
+  <animation>
     <type>rotate</type>
     <object-name>porteD</object-name>
-    <property>instrumentation/doors/passenger/position-norm</property>
+    <property>sim/model/door-positions/passenger/position-norm</property>
     <factor> -165 </factor>
     <axis>
       <x1-m> 0.153 </x1-m>
@@ -786,11 +905,11 @@
       <y-m> -0.956 </y-m>
       <z-m> -0.632 </z-m>
     </center>
-		<axis>
-			<x> -0.031361 </x>
-			<y>  0.000000 </y>
-			<z> -0.115933 </z>
-		</axis>
+    <axis>
+      <x> -0.031361 </x>
+      <y>  0.000000 </y>
+      <z> -0.115933 </z>
+    </axis>
   </animation>
 
   <animation>
@@ -812,11 +931,46 @@
       <y-m>  0.956 </y-m>
       <z-m> -0.632 </z-m>
     </center>
-		<axis>
-			<x> -0.031361 </x>
-			<y>  0.000000 </y>
-			<z> -0.115933 </z>
-		</axis>
+    <axis>
+      <x> -0.031361 </x>
+      <y>  0.000000 </y>
+      <z> -0.115933 </z>
+    </axis>
+  </animation>
+
+  <!-- Rotation des roues lors du roulage -->
+  <animation>
+    <type>spin</type>
+    <object-name>roueG</object-name>
+    <property>gear/gear[0]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m> -1.49611 </x-m>
+      <y-m> -0.95638 </y-m>
+      <z-m> -0.97351 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>roueD</object-name>
+    <property>gear/gear[1]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m> -1.49611 </x-m>
+      <y-m>  0.95638 </y-m>
+      <z-m> -0.97351 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
   </animation>
 
   <!-- Canopy -->
@@ -827,9 +981,23 @@
   </animation>
 
   <animation>
+    <type>pick</type>
+    <object-name>LaCanope</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>doors.crew.toggle();</script>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
     <type>translate</type>
     <object-name>LaCanope</object-name>
-    <property>instrumentation/doors/crew/position-norm</property>
+    <property>sim/model/door-positions/crew/position-norm</property>
     <factor> -0.61 </factor>
     <axis>
       <x> 1 </x>
@@ -841,7 +1009,7 @@
   <animation>
     <type>translate</type>
     <object-name>LaCanope</object-name>
-    <property>instrumentation/doors/crew/position-norm</property>
+    <property>sim/model/door-positions/crew/position-norm</property>
     <factor> 0.04 </factor>
     <axis>
       <x> 0 </x>
@@ -850,5 +1018,50 @@
     </axis>
   </animation>
 
-</PropertyList>
+  <!-- Ajout des effets lumineux -->
+  <model>
+    <path>Aircraft/C460/Models/light/beacon.xml</path>
+    <offsets>
+      <x-m> 2.86522 </x-m>
+      <y-m> 0.00000 </y-m>
+      <z-m> 1.12983 </z-m>
+    </offsets>
+  </model>
 
+  <model>
+    <path>Aircraft/C460/Models/light/RedLight.xml</path>
+    <offsets>
+      <x-m> -1.24187 </x-m>
+      <y-m> -3.34896 </y-m>
+      <z-m> -0.18905 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/light/StrobeLight.xml</path>
+    <offsets>
+      <x-m> -1.20187 </x-m>
+      <y-m> -3.34896 </y-m>
+      <z-m> -0.18905 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/light/GreenLight.xml</path>
+    <offsets>
+      <x-m> -1.24187 </x-m>
+      <y-m>  3.34896 </y-m>
+      <z-m> -0.18905 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/C460/Models/light/StrobeLight.xml</path>
+    <offsets>
+      <x-m> -1.20187 </x-m>
+      <y-m>  3.34896 </y-m>
+      <z-m> -0.18905 </z-m>
+    </offsets>
+  </model>
+
+</PropertyList>

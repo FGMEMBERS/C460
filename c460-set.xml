@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 
 <!-- <PropertyList include="c460-jsbsim-cnf.xml"> -->
 <PropertyList include="c460-yasim-cnf.xml">
 
   <sim>
+  
     <description>Caudron C 460 (YASim)</description>
     <author>Emmanuel BARANGER (3D/FDM)</author>
 
     <rating>
       <FDM type="int">     0 </FDM>
-      <systems type="int"> 0 </systems>
-      <cockpit type="int"> 0 </cockpit>
-      <model type="int">   3 </model>
+      <systems type="int"> 1 </systems>
+      <cockpit type="int"> 1 </cockpit>
+      <model type="int">   4 </model>
     </rating>
 
   </sim>
 
 </PropertyList>
-

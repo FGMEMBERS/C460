@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
  
 <PropertyList>
 
@@ -6,7 +6,7 @@
  
   <crank>
    <name>engstart</name>
-   <path>Sounds/engstart.wav</path>
+   <path>Aircraft/C460/Sounds/start.wav</path>
    <property>/engines/engine/cranking</property>
    <volume>
     <offset>0.4</offset>
@@ -40,7 +40,7 @@
   <engine>
    <name>engine</name>
    <mode>looped</mode>
-   <path>Sounds/wasp.wav</path>
+   <path>Aircraft/C460/Sounds/running.wav</path>
    <property>/engines/engine/running</property>
    <volume>
     <property>/engines/engine/mp-osi</property>
@@ -67,30 +67,6 @@
     <offset>0.15</offset>
    </pitch>
   </engine>
-
-  <propeller>
-   <name>propeller</name>
-   <mode>looped</mode>
-   <path>Sounds/turboprop1.wav</path>
-   <property>/engines/engine/running</property>
-   <volume>
-    <property>/orientation/alpha-deg</property>
-    <type>log</type>
-    <min>0.2</min>
-    <max>1.0</max>
-   </volume>
-   <volume>
-    <property>/sim/current-view/internal</property>
-    <factor>0.5</factor>
-   </volume>
-   <pitch>
-    <property>/engines/engine/mp-osi</property>
-    <factor>0.0036</factor>
-    <min>0.5</min>
-    <max>2.0</max>
-    <offset>0.9</offset>
-   </pitch>
-  </propeller>
 
   <rumble>
    <name>rumble</name>
